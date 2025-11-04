@@ -2,7 +2,10 @@
 <hr>
 
 <div class="row">
-  <div class="col">
-    <app-stock-add-reactive-form></app-stock-add-reactive-form>
-  </div>
+    <div class="col">
+        <app-stock-add-reactive-form (OnNewStock)="stockService.addStock($event)"></app-stock-add-reactive-form>
+    </div>
+    <div class="col">
+        <stock-list [stockList]="stockService.stocklist()"></stock-list>
+    </div>
 </div>

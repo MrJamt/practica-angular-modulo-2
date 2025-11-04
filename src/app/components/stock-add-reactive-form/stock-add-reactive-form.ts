@@ -1,20 +1,18 @@
 import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Stock } from '../../interfaces/stock.interface';
-import { JsonPipe, TitleCasePipe } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-stock-add-reactive-form',
-  imports: [JsonPipe, TitleCasePipe, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TitleCasePipe],
   templateUrl: './stock-add-reactive-form.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class StockAddReactiveForm {
   reactiveStockAddTitle = signal<string>("Agregar stock reactivo");
-
   private fb = inject(FormBuilder);
-
   OnNewStock = output<Stock>();
 
   public reactiveStockForm = this.fb.group({
