@@ -1,1 +1,28 @@
-<p>stock-add-reactive-form works!</p>
+<h3 class="mb-5">{{ reactiveStockAddTitle() }}</h3>
+
+<form [formGroup]="reactiveStockForm" (ngSubmit)="addStock()" autocomplete="off">
+    <div class="mb-5">
+        <h5>Nombre: {{ this.reactiveStockForm.controls.name.value }}</h5>
+        <input id="name" type="text" class="form-control" placeholder="Ej: Laptop" formControlName="name" />
+
+        <div class="form-text text-danger"
+            *ngIf="reactiveStockForm.controls.name.invalid && (reactiveStockForm.controls.name.touched || reactiveStockForm.controls.name.dirty)">
+            El nombre es obligatorio y debe tener al menos 3 caracteres.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <h5>Cantidad: {{ this.reactiveStockForm.controls.cuantity.value }}</h5>
+
+        <input id="cuantity" type="number" class="form-control" placeholder="Ej: 10" formControlName="cuantity" />
+
+        <div class="form-text text-danger"
+            *ngIf="reactiveStockForm.controls.cuantity.invalid && reactiveStockForm.controls.cuantity.touched">
+            La cantidad debe ser mayor o igual a 1.
+        </div>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">
+        Agregar
+    </button>
+</form>
